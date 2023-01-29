@@ -1,11 +1,7 @@
 package com.example.projektjavafinal;
 
-import entity.VisitsEntity;
-import jakarta.persistence.Tuple;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
 
 public class CreateVisitByDoc {
