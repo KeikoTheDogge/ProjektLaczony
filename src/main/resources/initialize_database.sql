@@ -5,7 +5,7 @@ create database nfz;
 use nfz;
 
 create table users (
-    userID int primary key,
+    userID int primary key auto_increment,
     login varchar(20),
     password varchar(20),
     name varchar(20),
@@ -28,11 +28,14 @@ create table visits (
     visitId int primary key auto_increment,
     date date,
     time time,
+    type varchar(50),
     doctorId int not null,
     patientId int,
     foreign key (doctorId) references users(userID),
     foreign key (patientId) references users(userID)
 );
+
+drop table visits;
 
 insert into users(userID, login, password, name, surname) VALUES (1, 'kowal', 'dupa', 'Jan', 'Kowalski');
 insert into patients(userID, adres) VALUES (1, 'Dupna 123');
@@ -55,8 +58,6 @@ values
     (7, '2023-01-24', '16:00:00', 3),
     (8, '2023-01-24', '16:30:00', 3);
 
-alter table visits
-add type varchar(100);
 
 alter table doctors
 add work_for time;
@@ -65,7 +66,7 @@ alter table doctors
 add work_to time;
 
 insert into users(userID, login, password, name, surname) VALUES (6, 'jeleń', 'dupa', 'marcin', 'jeleń');
-insert into doctors(userID, specialization, work_for, work_to, work_hours) values (6, 'dermatolog', '8:00', '16:00', subtime(work_to, work_for)-79992);
+insert into doctors(userID, specialization, work_for, work_to, work_hours) values (6, 'dermatolog', '8:00', '16:00', subtime(work_to, work_for)/10000);
 
 alter table doctors
 add work_hours int;
@@ -74,9 +75,10 @@ select * from doctors;
 
 delete from doctors where specialization='' OR specialization IS NULL;
 
-delete from doctors where userID = 6;
-delete from users where userID = 6;
+delete from patients where userID = 4;
+delete from users where userID = 4;
 delete from users where name='' OR name IS NULL;
 
 alter table doctors
 drop column work_hours;
+
