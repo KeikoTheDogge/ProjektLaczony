@@ -14,13 +14,13 @@ public class AddVisitCommand {
 
     private static SimpleDateFormat timeFormatter;
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public AddVisitCommand() {
         scanner = new Scanner(System.in);
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         dateFormatter.setLenient(false);
-        timeFormatter = new SimpleDateFormat("hh:mm");
+        timeFormatter = new SimpleDateFormat("kk:mm");
         timeFormatter.setLenient(false);
     }
 
@@ -49,7 +49,7 @@ public class AddVisitCommand {
             try {
                 parsedVisitTime = new Time(timeFormatter.parse(date).getTime());
             } catch (ParseException e) {
-                System.out.println("Nie wlasciwy format daty. Podaj jeszcze raz w formacie yyyy-mm-dd:");
+                System.out.println("Nie wlasciwy format daty. Podaj jeszcze raz w formacie hh:mm");
                 date = scanner.next();
             }
         } while (parsedVisitTime==null);

@@ -27,7 +27,8 @@ create table doctors (
 create table visits (
     visitId int primary key auto_increment,
     date date,
-    time time,
+    time_from time,
+    time_to time,
     type varchar(50),
     doctorId int not null,
     patientId int,
@@ -81,4 +82,6 @@ delete from users where name='' OR name IS NULL;
 
 alter table doctors
 drop column work_hours;
+
+
 

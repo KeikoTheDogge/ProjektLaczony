@@ -16,6 +16,10 @@ public class DatabaseSession {
         session = entityManager.unwrap(Session.class);
     }
 
+    public Session getSession() {
+        return session;
+    }
+
     public void saveObject(Object entityObject) {
         session.save(entityObject);
     }
