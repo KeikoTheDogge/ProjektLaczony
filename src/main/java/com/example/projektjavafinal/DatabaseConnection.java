@@ -19,4 +19,9 @@ public class DatabaseConnection {
     public void addEmptyVisit(String commandSQL) throws SQLException {
         statement.execute(commandSQL);
     }
+
+    public int Work(String commandSQL) throws SQLException {
+        statement.execute(commandSQL);
+        return 0;
+    }
 }

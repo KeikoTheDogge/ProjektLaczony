@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Time;
-
 @org.hibernate.annotations.NamedQueries(
         {
                 @org.hibernate.annotations.NamedQuery(name="getVisitBySpecialisation",
-                        query="select v, u from VisitsEntity v inner join UsersEntity u on v.doctorId = u.id inner join DoctorsEntity d on u.id = d.userId where d.specialization = :spec and v.patientId = null")
+                        query="select v, u from VisitsEntity v inner join UsersEntity u on v.doctorId = u.id " +
+                                "inner join DoctorsEntity d on u.id = d.userId where d.specialization = :spec and v.patientId = null")
         }
 )
 
@@ -31,6 +31,9 @@ public class VisitsEntity {
     @Basic
     @Column(name = "patientId")
     private Integer patientId;
+    @Basic
+    @Column(name = "type")
+    private String type;
 
     public int getVisitId() {
         return visitId;
@@ -72,6 +75,14 @@ public class VisitsEntity {
         this.patientId = patientId;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +95,7 @@ public class VisitsEntity {
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
         if (patientId != null ? !patientId.equals(that.patientId) : that.patientId != null) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
 
         return true;
     }
@@ -95,6 +107,11 @@ public class VisitsEntity {
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + doctorId;
         result = 31 * result + (patientId != null ? patientId.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
+    }
+
+    public String toString() {
+        return String.format("%d", time);
     }
 }

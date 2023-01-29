@@ -57,3 +57,26 @@ values
 
 alter table visits
 add type varchar(100);
+
+alter table doctors
+add work_for time;
+
+alter table doctors
+add work_to time;
+
+insert into users(userID, login, password, name, surname) VALUES (6, 'jeleń', 'dupa', 'marcin', 'jeleń');
+insert into doctors(userID, specialization, work_for, work_to, work_hours) values (6, 'dermatolog', '8:00', '16:00', subtime(work_to, work_for)-79992);
+
+alter table doctors
+add work_hours int;
+
+select * from doctors;
+
+delete from doctors where specialization='' OR specialization IS NULL;
+
+delete from doctors where userID = 6;
+delete from users where userID = 6;
+delete from users where name='' OR name IS NULL;
+
+alter table doctors
+drop column work_hours;

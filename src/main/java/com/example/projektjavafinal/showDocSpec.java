@@ -7,9 +7,6 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class showDocSpec{
 

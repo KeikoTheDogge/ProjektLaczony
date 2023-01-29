@@ -3,6 +3,7 @@ package startApp;
 import Login.Authentication;
 import Login.Password;
 import Login.Registration;
+import com.example.projektjavafinal.CreateVisitByDoc;
 import com.example.projektjavafinal.showDocSpec;
 import entity.DoctorsEntity;
 import entity.PatientsEntity;
@@ -98,7 +99,11 @@ public class main {
 
                                 String answer3 = scanner.next();
                                 switch (answer3) {
-                                    case "1" -> System.out.println("work in progress");
+                                    case "1" ->
+                                    {
+                                        //CreateVisitByDoc create = new CreateVisitByDoc();
+                                        //create.AddVisit(user.getUserId());
+                                    }
                                     case "2" -> System.out.println("work in progress");
                                     case "3" -> {
                                         System.out.println("Adam Malinowski [index]");
