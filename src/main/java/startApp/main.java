@@ -3,7 +3,8 @@ package startApp;
 import Login.Authentication;
 import Login.Password;
 import Login.Registration;
-import com.example.projektjavafinal.CreateVisitByDoc;
+import Visits.CreateVisitByDoc;
+import com.example.projektjavafinal.DatabaseSession;
 import com.example.projektjavafinal.showDocSpec;
 import entity.DoctorsEntity;
 import entity.PatientsEntity;
@@ -55,7 +56,7 @@ public class main {
                                     case "5" -> {
                                         System.out.println("Podaj specjalizację, która cię interesuje");
                                         String specialization = scanner.next();
-                                        showDocSpec specs = new showDocSpec();
+                                        showDocSpec specs = new showDocSpec(databaseSession);
                                         List<DoctorsEntity> lekarze = specs.specDoctor(specialization);
                                         for (DoctorsEntity lekarz : lekarze) {
                                             System.out.println(lekarz.getSpecialization() + " " + lekarz.getName() + " " + lekarz.getSurname());

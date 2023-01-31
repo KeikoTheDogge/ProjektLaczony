@@ -14,10 +14,6 @@ public class PatientsEntity extends UsersEntity {
     @Column(name = "adres")
     private String adres;
 
-    public int getUserId() {
-        return userId;
-    }
-
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
@@ -48,9 +44,5 @@ public class PatientsEntity extends UsersEntity {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (adres != null ? adres.hashCode() : 0);
         return result;
-    }
-
-    public String toString() {
-        return String.format("%d, %s", userId, adres);
     }
 }

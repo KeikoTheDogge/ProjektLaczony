@@ -15,6 +15,8 @@ import java.sql.Time;
                         query="from VisitsEntity where doctorId = :doctorId and date = :visitDate " +
                                 "and (:timeStart >= timeFrom AND :timeStart < timeTo) " +
                                 "OR (:timeEnd > timeFrom AND :timeEnd <= timeTo)"),
+                @org.hibernate.annotations.NamedQuery(name="getShowVisit",
+                        query = "from VisitsEntity where doctorId = :doctorId and date = :date"),
         }
 )
 @Entity

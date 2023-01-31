@@ -1,7 +1,6 @@
 package entity;
 
 import jakarta.persistence.*;
-
 @org.hibernate.annotations.NamedQueries(
         {
             @org.hibernate.annotations.NamedQuery(name="loginUser", query="from UsersEntity where login = :login and password = :password")
@@ -73,13 +72,13 @@ public class UsersEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UsersEntity that = (UsersEntity) o;
+        UsersEntity users = (UsersEntity) o;
 
-        if (userId != that.userId) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
+        if (userId != users.userId) return false;
+        if (login != null ? !login.equals(users.login) : users.login != null) return false;
+        if (password != null ? !password.equals(users.password) : users.password != null) return false;
+        if (name != null ? !name.equals(users.name) : users.name != null) return false;
+        if (surname != null ? !surname.equals(users.surname) : users.surname != null) return false;
 
         return true;
     }

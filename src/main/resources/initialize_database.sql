@@ -12,6 +12,9 @@ create table users (
     surname varchar(20)
 );
 
+drop database nfz;
+
+
 create table patients (
     userID int,
     adres varchar(20),
@@ -45,32 +48,7 @@ insert into doctors(userID, specialization) VALUES (2, 'kardiolog');
 insert into users(userID, login, password, name, surname) VALUES (3, 'gorzala', 'dupa', 'Marian', 'Gorzala');
 insert into doctors(userID, specialization) VALUES (3, 'chirurg');
 
-insert into visits(visitId, date, time, doctorId)
-values
-(1, '2023-01-24', '12:00:00', 2),
-(2, '2023-01-24', '12:30:00', 2),
-(3, '2023-01-24', '13:00:00', 2),
-(4, '2023-01-24', '13:30:00', 2);
 
-insert into visits(visitId, date, time, doctorId)
-values
-    (5, '2023-01-24', '15:00:00', 3),
-    (6, '2023-01-24', '15:30:00', 3),
-    (7, '2023-01-24', '16:00:00', 3),
-    (8, '2023-01-24', '16:30:00', 3);
-
-
-alter table doctors
-add work_for time;
-
-alter table doctors
-add work_to time;
-
-insert into users(userID, login, password, name, surname) VALUES (6, 'jeleń', 'dupa', 'marcin', 'jeleń');
-insert into doctors(userID, specialization, work_for, work_to, work_hours) values (6, 'dermatolog', '8:00', '16:00', subtime(work_to, work_for)/10000);
-
-alter table doctors
-add work_hours int;
 
 select * from doctors;
 
@@ -80,8 +58,8 @@ delete from patients where userID = 4;
 delete from users where userID = 4;
 delete from users where name='' OR name IS NULL;
 
-alter table doctors
-drop column work_hours;
+
+
 
 
 

@@ -1,6 +1,6 @@
-package com.example.projektjavafinal;
+package Visits;
 
-import entity.UsersEntity;
+import com.example.projektjavafinal.DatabaseSession;
 import entity.VisitsEntity;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -65,13 +65,9 @@ public class CreateVisitByDoc {
         DatabaseSession databaseSession = new DatabaseSession();
         databaseSession.openSession();
         CreateVisitByDoc create = new CreateVisitByDoc(databaseSession);
-        AddVisitCommand addVisitCommand = new AddVisitCommand();
+        create.promptDoctorForNewVisit(3);
 
-        String visitType = addVisitCommand.getVisitType();
-        Date date = addVisitCommand.getVisitData();
-        Time time = addVisitCommand.getVisitTime();
-
-        create.addNewVisit(doctorId, visitType, date, time);
         databaseSession.closeSession();
     }
+
 }

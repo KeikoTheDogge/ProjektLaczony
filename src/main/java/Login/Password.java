@@ -16,15 +16,7 @@ public class Password {
     }
 
     public Password(String password) {
-//        try {
-//            if (password.length() < minPasswordLength) {
-//                throw new IllegalArgumentException("Hasło musi być dłuższe niż 8 znaków");
-//            }
-//        } catch (Exception e) {
-//            throw new IllegalArgumentException(e);
-//        }
         this.plainPassword = password;
-
     }
 
     private int passwordStrength() {

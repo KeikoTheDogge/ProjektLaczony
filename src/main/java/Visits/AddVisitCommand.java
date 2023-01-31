@@ -1,4 +1,4 @@
-package com.example.projektjavafinal;
+package Visits;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -33,7 +33,7 @@ public class AddVisitCommand {
             try {
                 parsedVisitDate = new Date(dateFormatter.parse(date).getTime());
             } catch (ParseException e) {
-                System.out.println("Nie wlasciwy format daty. Podaj jeszcze raz w formacie yyyy-mm-dd:");
+                System.out.println("Niewłaściwy format daty. Podaj jeszcze raz w formacie yyyy-mm-dd:");
                 date = scanner.next();
             }
         } while (parsedVisitDate==null);
@@ -49,7 +49,7 @@ public class AddVisitCommand {
             try {
                 parsedVisitTime = new Time(timeFormatter.parse(date).getTime());
             } catch (ParseException e) {
-                System.out.println("Nie wlasciwy format daty. Podaj jeszcze raz w formacie hh:mm");
+                System.out.println("Niewłaściwy format daty. Podaj jeszcze raz w formacie hh:mm");
                 date = scanner.next();
             }
         } while (parsedVisitTime==null);
