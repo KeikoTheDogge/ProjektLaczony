@@ -5,3 +5,7 @@ mvnw
 mvnw.cmd
 # Project exclude paths
 /target/
+**/*.jar
+/lib/unknown/binary/KControls-2.0/SNAPSHOT/KControls-2.0-SNAPSHOT.jar
+/src/main/resources/META-INF/beans.xml
+/ProjektJavaFinal.iml
