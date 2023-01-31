@@ -60,6 +60,18 @@ public class CreateVisitByDoc {
         return true;
     }
 
+    public void promptDoctorForNewVisit(int doctorId) {
+        AddVisitCommand addVisitCommand = new AddVisitCommand();
+
+        String visitType = addVisitCommand.getVisitType();
+        Date date = addVisitCommand.getVisitData();
+        Time time = addVisitCommand.getVisitTime();
+
+        addNewVisit(doctorId, visitType, date, time);
+    }
+
+
+
     public static void main(String[] args) {
         int doctorId = 3;
         DatabaseSession databaseSession = new DatabaseSession();

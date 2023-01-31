@@ -6,7 +6,7 @@ use nfz;
 
 create table users (
     userID int primary key auto_increment,
-    login varchar(20),
+    login varchar(20) unique,
     password varchar(20),
     name varchar(20),
     surname varchar(20)

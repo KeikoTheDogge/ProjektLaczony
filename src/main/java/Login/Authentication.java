@@ -1,38 +1,25 @@
 package Login;
 
+import com.example.projektjavafinal.DatabaseSession;
 import entity.UsersEntity;
 import jakarta.persistence.*;
-import org.hibernate.Session;
 
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
-/**
+/**import jakarta.persistence.*;
  * Klasa Authentication zajmuje się autoryzacją user'a oraz lekarza
  */
 public class Authentication {
-    private final EntityManagerFactory entityManagerFactory;
-    private final EntityManager entityManager;
-    private final Session session;
+    private final DatabaseSession databaseSession;
 
-    public Authentication() {
-        // Komendy do usunięcia niepotrzebnych logów z konsoli
-        LogManager logManager = LogManager.getLogManager();
-        Logger logger = logManager.getLogger("");
-        logger.setLevel(Level.SEVERE);
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        entityManager = entityManagerFactory.createEntityManager();
-        session = entityManager.unwrap(Session.class);
+    public Authentication(DatabaseSession databaseSession) {
+        this.databaseSession = databaseSession;
     }
 
     public UsersEntity authenticate(String login, String password) throws NoResultException {
-        Query query = session.createNamedQuery("loginUser", UsersEntity.class);
+        Query query = databaseSession.getSession().createNamedQuery("loginUser", UsersEntity.class);
         query.setParameter("login", login);
         query.setParameter("password", password);
-        UsersEntity user = (UsersEntity) query.getSingleResult();
-        return user;
+        return (UsersEntity) query.getSingleResult();
     }
 
 }

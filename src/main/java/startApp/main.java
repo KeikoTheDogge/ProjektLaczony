@@ -16,18 +16,22 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 
 public class main {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        label:
+
+        DatabaseSession databaseSession = new DatabaseSession();
+        Registration registration = new Registration(databaseSession);
         while (true) {
             System.out.println("Wybierz [1] aby się zalogować. Wybierz [2] aby założyć konto. [3] aby zakończyć działanie programu");
             String answer1 = scanner.next();
+            databaseSession.openSession();
             switch (answer1) {
                 case "1": {
-                    UsersEntity users = new UsersEntity();
-                    Authentication authentication = new Authentication();
+                    Authentication authentication = new Authentication(databaseSession);
                     UsersEntity user;
                     System.out.println("Podaj login");
                     String login = scanner.next();
@@ -68,13 +72,14 @@ public class main {
                                         System.out.println("Tymoteusz Całka [261800]");
                                     }
                                     case "8" -> {
-                                        System.out.println("Podaj swój login");
-                                        String delLogin = scanner.next();
-                                        System.out.println("Podaj swoje hasło");
-                                        String delPass = scanner.next();
-                                        Registration registration = new Registration();
-                                        registration.deleteUser(delLogin, delPass);
-                                        logout = 0;
+                                        System.out.println("Czy na pewno chcesz usunąć konto pacjenta? Wpisz TAK aby potwierdzić");
+                                        String answer = scanner.next();
+                                        if (answer.equals("TAK")) {
+                                            registration.deletePatientUser((PatientsEntity) user);
+                                            logout = 0;
+                                        } else {
+                                            System.out.println("Procedura usuwania użytkownika przerwana");
+                                        }
                                     }
                                     case "9" -> {
                                         logout = 0;
@@ -102,8 +107,8 @@ public class main {
                                 switch (answer3) {
                                     case "1" ->
                                     {
-                                        //CreateVisitByDoc create = new CreateVisitByDoc();
-                                        //create.AddVisit(user.getUserId());
+                                        CreateVisitByDoc visitByDoc = new CreateVisitByDoc(databaseSession);
+                                        visitByDoc.promptDoctorForNewVisit(user.getUserId());
                                     }
                                     case "2" -> System.out.println("work in progress");
                                     case "3" -> {
@@ -112,13 +117,14 @@ public class main {
                                         System.out.println("Tymoteusz Całka [261800]");
                                     }
                                     case "4" -> {
-                                        System.out.println("Podaj swój login");
-                                        String delLogin = scanner.next();
-                                        System.out.println("Podaj swoje hasło");
-                                        String delPass = scanner.next();
-                                        Registration registration = new Registration();
-                                        registration.deleteUser(delLogin, delPass);
-                                        logout = 0;
+                                        System.out.println("Czy na pewno chcesz usunąć konto doctora? Wpisz TAK aby potwierdzić");
+                                        String answer = scanner.next();
+                                        if (answer.equals("TAK")) {
+                                            registration.deleteDoctorUser((DoctorsEntity) user);
+                                            logout = 0;
+                                        } else {
+                                            System.out.println("Procedura usuwania użytkownika przerwana");
+                                        }
                                     }
                                     case "5" -> {
                                         logout = 0;
@@ -134,7 +140,7 @@ public class main {
                     break;
                 }
                 case "2": {
-                    Registration registration = new Registration();
+
                     System.out.println("Podaj swoje imię ");
                     String name = scanner.next();
                     System.out.println("Podaj swoje nazwisko ");
@@ -144,16 +150,18 @@ public class main {
                     System.out.println("Podaj hasło jakim chcesz się posługiwać");
                     String pass = scanner.next();
                     Password password = new Password(pass);
-                    registration.addUserToDataBase(name, surname, login, password);
+                    registration.addNewPatient(name, surname, login, password);
                     break;
                 }
                 case "3":
                     System.out.println("Dziękujemy za użycie naszej aplikacji");
-                    break label;
+                    exit(0);
                 default:
                     System.out.println("Wybór podany źle, podaj 1 lub 2");
                     break;
             }
+
+            databaseSession.closeSession();
         }
     }
 }
